@@ -1,0 +1,232 @@
+<div id="dashboard-mobile-encuadre">
+  <style>
+    #dashboard-mobile-encuadre {
+      --viz-bg: var(--background, #f6f7f9);
+      --viz-fg: var(--foreground, #202124);
+      --viz-muted: var(--muted-foreground, #6b7280);
+      --viz-card: var(--card, #ffffff);
+      --viz-border: var(--border, #d9dde3);
+      --viz-primary: var(--primary, #2563eb);
+      --viz-primary-fg: var(--primary-foreground, #ffffff);
+      --viz-series-1: var(--series-1, var(--primary, #2f9be8));
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--viz-fg);
+      background: var(--viz-bg);
+      border: 1px solid var(--viz-border);
+      border-radius: 18px;
+      padding: 16px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    #dashboard-mobile-encuadre .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    #dashboard-mobile-encuadre .toolbar-label {
+      font-size: 14px;
+      color: var(--viz-muted);
+    }
+    #dashboard-mobile-encuadre select {
+      color: var(--viz-fg);
+      background: var(--viz-card);
+      border: 1px solid var(--viz-border);
+      border-radius: 9px;
+      padding: 7px 28px 7px 9px;
+      font: inherit;
+    }
+    #dashboard-mobile-encuadre .stage {
+      display: flex;
+      justify-content: center;
+      padding: 8px 0 2px;
+    }
+    #dashboard-mobile-encuadre .phone {
+      width: min(100%, 390px);
+      background: var(--viz-card);
+      border: 8px solid var(--viz-fg);
+      border-radius: 28px;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+    #dashboard-mobile-encuadre .phone-top {
+      height: 16px;
+      background: var(--viz-fg);
+    }
+    #dashboard-mobile-encuadre .appbar {
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--viz-border);
+      box-sizing: border-box;
+    }
+    #dashboard-mobile-encuadre .menu {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      color: var(--viz-fg);
+      background: var(--viz-card);
+      border: 1px solid var(--viz-border);
+      border-radius: 9px;
+      font-size: 20px;
+    }
+    #dashboard-mobile-encuadre .account {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-left: auto;
+      font-weight: 500;
+      font-size: 14px;
+    }
+    #dashboard-mobile-encuadre .switch {
+      width: 45px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 3px;
+      box-sizing: border-box;
+      border-radius: 999px;
+      background: var(--viz-border);
+      color: var(--viz-muted);
+      font-size: 13px;
+    }
+    #dashboard-mobile-encuadre .switch::before {
+      content: "";
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      background: var(--viz-card);
+      box-shadow: 0 1px 3px color-mix(in srgb, var(--viz-fg) 25%, transparent);
+    }
+    #dashboard-mobile-encuadre .content {
+      background: var(--viz-bg);
+      padding: 18px 14px 24px;
+    }
+    #dashboard-mobile-encuadre .heading {
+      margin: 0 0 13px;
+      font-size: 25px;
+      line-height: 1.15;
+      font-weight: 500;
+    }
+    #dashboard-mobile-encuadre .filters {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 9px;
+      margin-bottom: 16px;
+    }
+    #dashboard-mobile-encuadre .filter,
+    #dashboard-mobile-encuadre .refresh {
+      min-height: 42px;
+      box-sizing: border-box;
+      border: 1px solid var(--viz-border);
+      border-radius: 10px;
+      background: var(--viz-card);
+      color: var(--viz-fg);
+      padding: 0 12px;
+      font: inherit;
+    }
+    #dashboard-mobile-encuadre .filter {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    #dashboard-mobile-encuadre .chevron {
+      color: var(--viz-muted);
+      font-size: 18px;
+    }
+    #dashboard-mobile-encuadre .refresh {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      white-space: nowrap;
+    }
+    #dashboard-mobile-encuadre .refresh-icon {
+      font-size: 22px;
+      line-height: 1;
+    }
+    #dashboard-mobile-encuadre .metric {
+      background: var(--viz-card);
+      border: 1px solid var(--viz-border);
+      border-radius: 14px;
+      padding: 16px;
+      min-height: 118px;
+      box-sizing: border-box;
+    }
+    #dashboard-mobile-encuadre .metric-label {
+      color: var(--viz-muted);
+      font-size: 14px;
+    }
+    #dashboard-mobile-encuadre .metric-value {
+      color: var(--viz-series-1);
+      font-size: 32px;
+      line-height: 1.1;
+      margin-top: 16px;
+    }
+    @media (max-width: 360px) {
+      #dashboard-mobile-encuadre { padding: 12px; }
+      #dashboard-mobile-encuadre .account { font-size: 12px; gap: 7px; }
+      #dashboard-mobile-encuadre .filters { grid-template-columns: 1fr; }
+      #dashboard-mobile-encuadre .refresh { justify-content: center; }
+    }
+  </style>
+
+  <div class="toolbar">
+    <span class="toolbar-label">Encuadre propuesto</span>
+    <label>
+      <span class="toolbar-label">Ancho</span>
+      <select id="dashboard-mobile-width" aria-label="Seleccionar ancho de vista">
+        <option value="320">320 px</option>
+        <option value="390" selected>390 px</option>
+        <option value="430">430 px</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="stage">
+    <div class="phone" id="dashboard-mobile-phone" aria-label="Vista previa del dashboard móvil">
+      <div class="phone-top"></div>
+      <header class="appbar">
+        <button class="menu" type="button" aria-label="Abrir menú">☷</button>
+        <div class="account">
+          <span class="switch" aria-label="Modo claro">☀</span>
+          <span>ian@liliantrade.com</span>
+        </div>
+      </header>
+      <main class="content">
+        <h2 class="heading">Admin Dashboard</h2>
+        <div class="filters">
+          <button class="filter" type="button" aria-label="Periodo seleccionado: Last 30 days">
+            <span>Last 30 days</span><span class="chevron">⌄</span>
+          </button>
+          <button class="refresh" type="button" aria-label="Actualizar dashboard">
+            <span class="refresh-icon">↻</span><span>Refresh</span>
+          </button>
+        </div>
+        <section class="metric" aria-label="Total Projects: 76">
+          <div class="metric-label">Total Projects ⓘ</div>
+          <div class="metric-value">76</div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.getElementById('dashboard-mobile-encuadre');
+      var select = root.querySelector('#dashboard-mobile-width');
+      var phone = root.querySelector('#dashboard-mobile-phone');
+      select.addEventListener('change', function () {
+        phone.style.width = Math.min(Number(select.value), 430) + 'px';
+      });
+    }());
+  </script>
+</div>
+
